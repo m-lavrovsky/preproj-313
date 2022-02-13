@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>User page</title>
+
+    <link th:href="@{/styles/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/styles/user-style.css}" rel="stylesheet">
+
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.0min.js}"></script>
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row  myheader">
+        <div class="col-md-11">
+            <h3><strong><span th:text="${userdata.username}"></span></strong> с правами:
+                <span sec:authorize="hasRole('USER')">пользователь </span>
+                <span sec:authorize="hasRole('ADMIN')">администратор </span>
+            </h3>
+        </div>
+        <div class="col-md-1">
+            <form th:action="@{/dologout}" method="get">
+                <button type="Submit" class="btn btn-link">Выйти</button>
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 mybackwhite">
+            <ul class="nav nav-tabs flex-column" id="nav1">
+                <li class="nav-item">
+                    <a class="nav-link active show" href="#tab1" data-toggle="tab">User</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10 mybackray">
+            <div class="tab-content">
+                <! TAB1 юзерскй -->
+                <div class="tab-pane mybackwhite active show" id="tab1">
+                    <div class="page-header">
+                        <h2><small>Страница информации о пользователе</small></h2>
+                    </div>
+                    <table class="table">
+                        <caption>Пользователь</caption>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Имя пользователя</th>
+                            <th>Имя</th>
+                            <th>Фамилия</th>
+                            <th>Возраст</th>
+                            <th>Роли</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr class="table-active">
+                            <td th:text="${userdata.id}">1</td>
+                            <td th:text="${userdata.username}"></td>
+                            <td th:text="${userdata.name}"></td>
+                            <td th:text="${userdata.lastname}"></td>
+                            <td th:text="${userdata.age}"></td>
+                            <td th:text="${userdata.getRolesAsString()}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/user-page-scripts.js}"></script>
+</body>
+</html>
