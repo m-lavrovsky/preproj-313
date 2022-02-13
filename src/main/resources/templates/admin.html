@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="https://www.thymeleaf.org"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,7 +47,7 @@
                 <div class="modal-body">
                     <input type="hidden" id="edit-act" th:field="*{action}">
 
-                    <label class="form-label" for="edit-id">Имя</label>
+                    <label class="form-label" for="edit-id">ID</label>
                     <input readonly class="form-control" type="text" id="edit-id" th:field="*{user.id}">
 
                     <label class="form-label" for="edit-name">Имя</label>
@@ -77,7 +76,7 @@
                     </select>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" th:action="@{/admin}">Закрыть</button>
                     <button type="submit" class="btn btn-primary">Изменить</button>
                 </div>
             </form>
@@ -97,7 +96,7 @@
                 <div class="modal-body">
                     <input type="hidden" id="delete-act" th:field="*{action}">
 
-                    <label class="form-label" for="delete-id">Имя</label>
+                    <label class="form-label" for="delete-id">ID</label>
                     <input readonly class="form-control" type="text" id="delete-id" th:field="*{user.id}">
 
                     <label class="form-label" for="delete-name">Имя</label>
@@ -119,7 +118,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
-                    <button type="submit" class="btn btn-danger">Удалить</button>
+                    <button type="submit" class="btn btn-danger" th:action="@{/admin}">Удалить</button>
                 </div>
             </form>
         </div>
@@ -143,10 +142,10 @@
         <div class="col-md-2 mybackwhite">
             <ul class="nav nav-tabs flex-column" id="nav1">
                 <li class="nav-item">
-                    <a class="nav-link active show" href="#tab1" data-toggle="tab">Admin</a>
+                    <a class="nav-link active show" href="/#tab1" data-toggle="tab">Admin</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#tab2" data-toggle="tab">User</a>
+                    <a class="nav-link" href="/#tab2" data-toggle="tab">User</a>
                 </li>
             </ul>
         </div>
@@ -155,8 +154,8 @@
                 <! TAB1 админский -->
                 <div class="tab-pane active " id="tab1">
                     <h3>Админская панель</h3>
-                    <p th:if="${processUserErrMsg != null}" th:text="${processUserErrMsg}"</p>
-                    <p th:if="${resultMsg != null}" th:text="${resultMsg}"</p>
+                    <p th:if="${processUserErrMsg != null}" th:text="${processUserErrMsg}"></p>
+                    <p th:if="${resultMsg != null}" th:text="${resultMsg}"></p>
                     <ul class="nav nav-tabs flex-row" id="nav2">
                         <li class="nav-item">
                             <a class="nav-link active show" href="#tab3" data-toggle="tab">Таблица юзеров</a>
@@ -172,8 +171,8 @@
                                 <caption>Все пользователи</caption>
                                 <thead>
                                 <tr>
-                                    <th width="35 px">#</th>
-                                    <th width="35 px">id</th>
+                                    <th>#</th>
+                                    <th>id</th>
                                     <th>Имя</th>
                                     <th>Фамилия</th>
                                     <th>Возраст</th>
